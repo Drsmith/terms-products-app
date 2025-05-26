@@ -1,0 +1,82 @@
+/* TermsPage.css - Final Fix for Text + Box + Diamond */
+.terms-page {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: Arial, sans-serif;
+  color: #333;
+  padding-top: 140px;
+  background: url('https://storage.123fakturera.se/public/wallpapers/sverige43.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.terms-heading {
+  text-align: center;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1.2rem;
+  z-index: 1;
+}
+
+.back-button {
+  display: block;
+  margin: 0 auto 2rem auto;
+  padding: 0.8rem 2rem;
+  background-color: #00a000;
+  color: white;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s;
+  position: relative;
+  z-index: 2;
+}
+
+.back-button:hover {
+  background-color: #008800;
+}
+
+.terms-box {
+  background-color: white;
+  margin: 0 auto 3rem auto;
+  max-width: 850px;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  font-family: Arial, sans-serif;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  z-index: 1;
+}
+
+.terms-content {
+  white-space: normal;
+  font-family: Arial, sans-serif;
+  color: #333;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+@media screen and (max-width: 768px) {
+  .terms-box {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .terms-heading {
+    font-size: 1.8rem;
+  }
+
+  .back-button {
+    font-size: 0.95rem;
+    padding: 0.6rem 1.5rem;
+  }
+}

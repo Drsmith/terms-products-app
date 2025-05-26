@@ -1,0 +1,174 @@
+/* ProductList.css */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fff;
+}
+
+.header-bar {
+  background-color: #0294f4;
+  height: 50px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 20px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.control-panel {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 25px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.search-group {
+  display: flex;
+  gap: 10px;
+}
+
+.search-box {
+  position: relative;
+}
+
+.search-box input {
+  padding: 8px 35px 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background: #fff;
+  outline: none;
+}
+
+.search-box .icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+}
+
+.buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  border: 1px solid #d0d0d0;
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.dot {
+  height: 8px;
+  width: 8px;
+  background: #00d25b;
+  border-radius: 50%;
+}
+
+.table-container {
+  padding: 0 25px 25px 25px;
+  overflow-x: auto;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+.product-table th,
+.product-table td {
+  background: #fff;
+  padding: 12px 16px;
+  text-align: left;
+  border: 1px solid #f0f0f0;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.product-table th {
+  font-weight: 600;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+.product-table tr {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+/* Ensure table content text is visible */
+.product-table td {
+  color: #000 !important;
+}
+/* Make sure button text is clearly visible */
+.btn {
+  color: #333 !important; /* Ensures text is dark and visible */
+  font-weight: 500;
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.btn:hover {
+  background-color: #f0f0f0;
+}
+input {
+  background-color: white;
+  color: black;
+  border: 1px solid #ccc;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+
+/* Responsive Layout for Tablet and Mobile Screens */
+@media (max-width: 1024px) {
+  .product-page-container {
+    padding: 1rem;
+    overflow-x: auto;
+  }
+
+  .product-controls,
+  .search-bar,
+  .product-table,
+  .table-row {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .product-controls > *,
+  .search-bar input,
+  .search-bar button,
+  .product-table input {
+    width: 100%;
+    margin: 0.3rem 0;
+  }
+
+  .product-table th,
+  .product-table td {
+    font-size: 0.95rem;
+    padding: 0.5rem;
+  }
+
+  .product-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
