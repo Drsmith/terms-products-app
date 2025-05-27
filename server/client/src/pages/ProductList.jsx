@@ -9,7 +9,7 @@ const ProductList = () => {
   const [editedProducts, setEditedProducts] = useState({});
 
   useEffect(() => {
-  axios.get("http://localhost:5000/products")
+  axios.get("https://terms-products-app.onrender.com/products")
     .then((res) => {
       const sorted = res.data.sort((a, b) => {
         const aNum = parseInt(a.articleNo.replace(/\D/g, ""));
@@ -37,7 +37,8 @@ const ProductList = () => {
   const updatedData = editedProducts[id];
   if (!updatedData) return;
 
-  axios.put(`http://localhost:5000/products/${id}`, updatedData)
+  axios.put(`https://terms-products-app.onrender.com/products/${id}`, updatedData)
+
     .then(() => {
       setProducts(prev => {
         const updatedList = prev.map(prod =>
