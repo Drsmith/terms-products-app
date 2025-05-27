@@ -22,6 +22,34 @@ async function startServer() {
     await db.sync({ alter: true });
     fastify.log.info('Tables synced');
 
+    // Seed sample products if none exist
+    const productCount = await Product.count();
+    if (productCount === 0) {
+      await Product.bulkCreate([
+        {
+          articleNo: "A101",
+          productName: "Sample Product 1",
+          inPrice: 50,
+          price: 100,
+          unit: "pcs",
+          inStock: 10,
+          description: "Seed product 1"
+        },
+        {
+          articleNo: "A102",
+          productName: "Sample Product 2",
+          inPrice: 60,
+          price: 120,
+          unit: "pcs",
+          inStock: 5,
+          description: "Seed product 2"
+        }
+      ]);
+      fastify.log.info('Sample products seeded!');
+    } else {
+      fastify.log.info('Products already exist, skipping seeding.');
+    }
+
     const port = process.env.PORT || 5000;
     await fastify.listen({ port, host: '0.0.0.0' });
 
