@@ -23,7 +23,7 @@ const TermsPage = () => {
 
   <button
   className="back-button"
-  onClick={() => (window.location.href = "https://your-vercel-app.vercel.app/")}
+  onClick={() => (window.location.href = "terms-products-app-szgl-6k6wbigz4-nithish-hs-projects.vercel.app")}
 >
   Close and Go Back
 </button>
