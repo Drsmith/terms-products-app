@@ -20,6 +20,8 @@ const TermsPage = () => {
       <h1 className="terms-heading">Terms</h1>
 
       <button className="back-button" onClick={() => window.location.href = "/"}>
+  Close and Go Back
+</button>
 
 
       <div className="terms-box">
