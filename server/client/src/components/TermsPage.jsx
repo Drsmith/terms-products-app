@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./TermsPage.css";
 import TopNavbar from "../components/TopNavbar";
 
 const TermsPage = () => {
   const [lang, setLang] = useState("en");
   const [termsContent, setTermsContent] = useState("");
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`https://terms-products-app.onrender.com/terms?lang=${lang}`)
@@ -21,15 +19,12 @@ const TermsPage = () => {
 
       <h1 className="terms-heading">Terms</h1>
 
- <button
-  className="back-button"
-  onClick={() =>
-    (window.location.href =
-      "https://terms-products-app-szgl-6k6wbigz4-nithish-hs-projects.vercel.app/")
-  }
->
-  Close and Go Back
-</button>
+      <a
+        className="back-button"
+        href="https://terms-products-app-szgl-6k6wbigz4-nithish-hs-projects.vercel.app/products"
+      >
+        Close and Go Back
+      </a>
 
       <div className="terms-box">
         <div
