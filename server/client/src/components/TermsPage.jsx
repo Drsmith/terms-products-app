@@ -19,12 +19,14 @@ const TermsPage = () => {
 
       <h1 className="terms-heading">Terms</h1>
 
-      <a
+      <button
         className="back-button"
-        href="https://terms-products-app-szgl-6k6wbigz4-nithish-hs-projects.vercel.app/products"
+        onClick={() => {
+          window.open('', '_self')?.close();
+        }}
       >
         Close and Go Back
-      </a>
+      </button>
 
       <div className="terms-box">
         <div
