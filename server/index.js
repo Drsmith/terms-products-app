@@ -22,7 +22,10 @@ async function startServer() {
     await db.sync({ alter: true });
     fastify.log.info('Tables synced');
 
-    // Always attempt to seed, skip duplicates
+    // ✅ TEMP: Delete all products before seeding
+    await Product.destroy({ where: {} });
+
+    // ✅ Seed fresh 19 products
     await Product.bulkCreate([
       { articleNo: "A101", productName: "Sample Product 1", inPrice: 50, price: 100, unit: "pcs", inStock: 10, description: "Seed product 1" },
       { articleNo: "A102", productName: "Sample Product 2", inPrice: 60, price: 120, unit: "pcs", inStock: 5, description: "Seed product 2" },
