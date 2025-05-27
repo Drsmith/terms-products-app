@@ -18,15 +18,21 @@ const TermsPage = () => {
       <TopNavbar onLanguageChange={setLang} currentLang={lang} />
 
       <h1 className="terms-heading">Terms</h1>
-
       <button
-        className="back-button"
-        onClick={() => {
-          window.open('', '_self')?.close();
-        }}
-      >
-        Close and Go Back
-      </button>
+  className="back-button"
+  onClick={() => {
+    const closed = window.close();
+
+    // Fallback if tab can't be closed (e.g., not opened via window.open)
+    setTimeout(() => {
+      if (!closed || window.closed === false) {
+        window.location.href = "/products";
+      }
+    }, 300);
+  }}
+>
+  Close and Go Back
+</button>
 
       <div className="terms-box">
         <div
