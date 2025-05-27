@@ -21,9 +21,10 @@ const TermsPage = () => {
 
       <h1 className="terms-heading">Terms</h1>
 
-      <button className="back-button" onClick={() => navigate("/")}>
-        Close and Go Back
-      </button>
+     <button className="back-button" onClick={() => window.location.replace("/")}>
+  Close and Go Back
+</button>
+
 
       <div className="terms-box">
         <div
