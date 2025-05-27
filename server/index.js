@@ -19,15 +19,16 @@ async function startServer() {
     fastify.register(productsRoutes);
     fastify.register(termsRoutes);
 
-    // ⚠️ Drop Products table first to clean out old data
+    // ⚠️ Drop old data
     await Product.drop();
-    fastify.log.info('Product table dropped.');
+    await Terms.drop();
+    fastify.log.info('Product and Terms tables dropped.');
 
-    // 🔁 Now recreate all tables
+    // 🔁 Sync schema
     await db.sync({ alter: true });
     fastify.log.info('Tables synced.');
 
-    // ✅ Seed fresh products
+    // ✅ Seed Products
     await Product.bulkCreate([
       { articleNo: "A101", productName: "Sample Product 1", inPrice: 50, price: 100, unit: "pcs", inStock: 10, description: "Seed product 1" },
       { articleNo: "A102", productName: "Sample Product 2", inPrice: 60, price: 120, unit: "pcs", inStock: 5, description: "Seed product 2" },
@@ -50,7 +51,21 @@ async function startServer() {
       { articleNo: "A119", productName: "Ethernet Cable Cat6", inPrice: 70, price: 120, unit: "pcs", inStock: 100, description: "10Gbps support" }
     ]);
 
-    fastify.log.info('Fresh products seeded.');
+    fastify.log.info('Products seeded.');
+
+    // ✅ Seed Terms
+    await Terms.bulkCreate([
+      {
+        lang: "en",
+        content: "<h2>Terms and Conditions</h2><p>These are the terms in English.</p>"
+      },
+      {
+        lang: "sv",
+        content: "<h2>Villkor</h2><p>Detta är villkoren på svenska.</p>"
+      }
+    ]);
+
+    fastify.log.info('Terms seeded.');
 
     const port = process.env.PORT || 5000;
     await fastify.listen({ port, host: '0.0.0.0' });
