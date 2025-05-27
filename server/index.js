@@ -19,13 +19,15 @@ async function startServer() {
     fastify.register(productsRoutes);
     fastify.register(termsRoutes);
 
+    // ⚠️ Drop Products table first to clean out old data
+    await Product.drop();
+    fastify.log.info('Product table dropped.');
+
+    // 🔁 Now recreate all tables
     await db.sync({ alter: true });
-    fastify.log.info('Tables synced');
+    fastify.log.info('Tables synced.');
 
-    // ✅ TEMP: Delete all products before seeding
-    await Product.destroy({ where: {} });
-
-    // ✅ Seed fresh 19 products
+    // ✅ Seed fresh products
     await Product.bulkCreate([
       { articleNo: "A101", productName: "Sample Product 1", inPrice: 50, price: 100, unit: "pcs", inStock: 10, description: "Seed product 1" },
       { articleNo: "A102", productName: "Sample Product 2", inPrice: 60, price: 120, unit: "pcs", inStock: 5, description: "Seed product 2" },
@@ -46,16 +48,14 @@ async function startServer() {
       { articleNo: "A117", productName: "External Hard Drive 1TB", inPrice: 2200, price: 2999, unit: "pcs", inStock: 14, description: "USB 3.0" },
       { articleNo: "A118", productName: "HDMI Cable 5m", inPrice: 90, price: 150, unit: "pcs", inStock: 80, description: "High-speed" },
       { articleNo: "A119", productName: "Ethernet Cable Cat6", inPrice: 70, price: 120, unit: "pcs", inStock: 100, description: "10Gbps support" }
-    ], {
-      ignoreDuplicates: true
-    });
+    ]);
 
-    fastify.log.info('Sample products seeded or already exist.');
+    fastify.log.info('Fresh products seeded.');
 
     const port = process.env.PORT || 5000;
     await fastify.listen({ port, host: '0.0.0.0' });
 
-    fastify.log.info(`Server listening at http://localhost:${port}`);
+    fastify.log.info(`Server running at http://localhost:${port}`);
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
