@@ -21,13 +21,15 @@ const TermsPage = () => {
 
       <h1 className="terms-heading">Terms</h1>
 
-  <button
+ <button
   className="back-button"
-  onClick={() => (window.location.href = "terms-products-app-szgl-6k6wbigz4-nithish-hs-projects.vercel.app")}
+  onClick={() =>
+    (window.location.href =
+      "https://terms-products-app-szgl-6k6wbigz4-nithish-hs-projects.vercel.app/")
+  }
 >
   Close and Go Back
 </button>
-
 
       <div className="terms-box">
         <div
