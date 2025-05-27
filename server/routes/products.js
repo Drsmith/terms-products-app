@@ -30,6 +30,22 @@ async function productsRoutes(fastify, options) {
       reply.status(500).send({ error: 'Internal Server Error' });
     }
   });
+
+  // ✅ Temporary route to clean duplicates by articleNo
+  fastify.get('/cleanup-duplicates', async (request, reply) => {
+    try {
+      await Product.sequelize.query(`
+        DELETE FROM "Products"
+        WHERE "id" NOT IN (
+          SELECT MIN("id") FROM "Products" GROUP BY "articleNo"
+        );
+      `);
+      reply.send({ message: 'Duplicate products removed successfully.' });
+    } catch (error) {
+      fastify.log.error('Error cleaning up duplicates:', error);
+      reply.status(500).send({ error: 'Cleanup failed.' });
+    }
+  });
 }
 
 module.exports = productsRoutes;
