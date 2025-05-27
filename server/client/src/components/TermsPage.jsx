@@ -7,19 +7,13 @@ const TermsPage = () => {
   const [termsContent, setTermsContent] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/terms?lang=${lang}`)
+    const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
+    fetch(`${API_BASE}/terms?lang=${lang}`)
       .then((res) => res.json())
       .then((data) => setTermsContent(data.content))
       .catch((err) => console.error("Error fetching terms:", err));
   }, [lang]);
- /* useEffect(() => {
-  const API_BASE = import.meta.env.VITE_API_BASE_URL;
-
-  fetch(`${API_BASE}/terms?lang=${lang}`)
-    .then((res) => res.json())
-    .then((data) => setTermsContent(data.content))
-    .catch((err) => console.error("Error fetching terms:", err));
-}, [lang]);*/
 
   return (
     <div className="terms-page">
