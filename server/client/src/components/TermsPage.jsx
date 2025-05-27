@@ -6,12 +6,21 @@ const TermsPage = () => {
   const [lang, setLang] = useState("en");
   const [termsContent, setTermsContent] = useState("");
 
- useEffect(() => {
-  fetch(`https://terms-products-app.onrender.com/terms?lang=${lang}`)
-    .then((res) => res.json())
-    .then((data) => setTermsContent(data.content))
-    .catch((err) => console.error("Error fetching terms:", err));
-}, [lang]);
+  useEffect(() => {
+    const fetchTerms = async () => {
+      try {
+        const res = await fetch(
+          `https://terms-products-app.onrender.com/terms?lang=${lang}`
+        );
+        const data = await res.json();
+        setTermsContent(data.content);
+      } catch (error) {
+        console.error("Error fetching terms:", error);
+      }
+    };
+
+    fetchTerms();
+  }, [lang]);
 
   return (
     <div className="terms-page">
