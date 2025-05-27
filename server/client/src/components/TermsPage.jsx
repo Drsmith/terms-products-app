@@ -21,14 +21,13 @@ const TermsPage = () => {
       <button
   className="back-button"
   onClick={() => {
-    const closed = window.close();
-
-    // Fallback if tab can't be closed (e.g., not opened via window.open)
-    setTimeout(() => {
-      if (!closed || window.closed === false) {
-        window.location.href = "/products";
-      }
-    }, 300);
+    if (window.opener) {
+      // If opened via window.open()
+      window.close();
+    } else {
+      // If opened normally (not closable), fallback
+      window.location.href = "/products"; // or any safe fallback
+    }
   }}
 >
   Close and Go Back
